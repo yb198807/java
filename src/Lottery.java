@@ -2,7 +2,7 @@ import java.util.Arrays;
 import java.util.Random;
 import java.util.Scanner;
 
-public class Test {
+public class Lottery {
     public static int[] createPrise(){
         int[] prise=new int[7];
         Random r=new Random();
