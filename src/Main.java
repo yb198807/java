@@ -1,9 +1,33 @@
 import java.util.ArrayList;
 import java.util.Random;
 import java.util.Scanner;
+class fun implements Runnable{
+
+    @Override
+    public void run() {
+        for (int i = 0; i < 10; i++) {
+            System.out.println("次线程第"+(i+1)+"次");
+        }
+    }
+}
+class fun2 extends Thread{
+    public void run(){
+        System.out.println("hh");
+    }
+}
 public class Main {
-    public static void main(String[] args) {
-        ArrayList<String> list=new ArrayList<>();
+    public static void main(String[] args) throws InterruptedException {
+        for (int i = 0; i < 10; i++) {
+            System.out.println("主线程第"+(i+1)+"次");
+            if(i==4){
+                //Thread thread=new Thread(new fun());
+                //thread.start();
+                //thread.join();
+                fun2 f=new fun2();
+                f.start();
+                f.join();
+            }
+        }
     }
     public static void forEach(String[] args) {
         int[] arr={1,2,3,4};
@@ -87,6 +111,7 @@ public class Main {
             num2 = num;
         System.out.println("第"+n+"项斐波那契数为："+num);
         }
+        input.close();
     }
     public static void Random(String[] args) {
         Random r=new Random();
@@ -112,6 +137,7 @@ public class Main {
                 System.out.println("错误3次，退出");
             }
         }
+        scan.close();
     }
     public static void PrintX(String[] args) {
         System.out.print("请输入行数：");
@@ -127,6 +153,7 @@ public class Main {
             }
             System.out.println();
         }
+        input.close();
     }
     public static void ForSum(String[] args) {
         double sum=0;
@@ -150,6 +177,7 @@ public class Main {
         for (int i = 30; i >= 0; i-=2) {
             System.out.print((num>>i)&1);
         }
+        input.close();
     }
     public static void NumFor1(String[] args) {
         System.out.print("请输入数字：");
@@ -162,6 +190,7 @@ public class Main {
             }
         }
         System.out.println(sum);
+        input.close();
     }
     public static void NarcissisticNumber(String[] args) {
         for (int i = 100; i < 1000; i++) {
@@ -230,6 +259,7 @@ public class Main {
         if(i>Math.sqrt(num)){
             System.out.println("是素数");
         }
+        input.close();
     }
     public static void HumanAge(String[] args) {
         System.out.print("请输入年龄：");
@@ -244,6 +274,7 @@ public class Main {
         }else{
             System.out.print("中年");
         }
+        input.close();
     }
     public static void GuessNumber(String[] args) {
         Random rand=new Random();
@@ -261,5 +292,6 @@ public class Main {
                 System.out.println("猜对了");
             }
         }while(scan!=num);
+        input.close();
     }
 }
