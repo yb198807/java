@@ -1,7 +1,9 @@
 package tcpSent;
 
+import java.io.BufferedInputStream;
+import java.io.BufferedOutputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.InputStream;
 import java.net.ServerSocket;
 import java.net.Socket;
 
@@ -11,12 +13,15 @@ public class service {
         ServerSocket serverSocket=new ServerSocket(9999);
         //创建连接
         Socket socket = serverSocket.accept();
-        //创建输入流（字节流）
-        InputStream is=socket.getInputStream();
-        //接收数据
-        int b;
-        while((b=is.read())!=-1) {
-            System.out.print((char)b);
+        //创建输入流
+        BufferedInputStream bis = new BufferedInputStream(socket.getInputStream());
+        //创建输出流
+        BufferedOutputStream bos = new BufferedOutputStream(new FileOutputStream("test/src/tcpSent/to/1.jpg"));
+        //接收数据写入文件
+        byte[] b=new byte[1024];
+        int len;
+        while((len=bis.read(b))!=-1) {
+            bos.write(b,0,len);
         }
         //关闭连接
         socket.close();
