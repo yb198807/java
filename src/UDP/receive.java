@@ -5,7 +5,7 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 
-public class receive {
+public class Receive {
     public static void main(String[] args) throws IOException {
         //创建端口
         DatagramSocket ds = new DatagramSocket(9998);
